@@ -1,0 +1,70 @@
+---
+import DemoButton from './DemoButton.astro';
+
+// 3-step pilot workflow, framed around the API / compute-engine model.
+// TODO: align step 2 with how the engine is actually described to customers.
+const steps = [
+  {
+    n: '1',
+    title: 'Send us your orbits',
+    body: 'Share TLEs or ephemerides and the parameters you care about — drag, radiation dose, surface charging. No integration required to start a pilot.',
+  },
+  {
+    n: '2',
+    title: 'We run the engine',
+    body: 'HelioSat models the space environment along each orbit and resolves it to your spacecraft, altitude, and time window — not a planet-wide average.',
+  },
+  {
+    n: '3',
+    title: 'You get results via API',
+    body: 'Receive forecasts as structured data through a simple API: drag predictions, event alerts, and confidence intervals your existing tools can consume directly.',
+  },
+];
+---
+
+<section
+  id="how-it-works"
+  class="border-y border-white/5 bg-void/40"
+>
+  <div class="mx-auto max-w-content px-5 py-20 sm:px-8 sm:py-28">
+    <div class="reveal max-w-2xl">
+      <p class="eyebrow mb-4">How it works</p>
+      <h2 class="text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+        A compute engine you can pilot in weeks, not quarters.
+      </h2>
+      <p class="mt-4 text-lg leading-relaxed text-slate-400">
+        We run pilots as a thin API engagement: you keep your stack, we deliver
+        forecasts you can validate against your own missions.
+      </p>
+    </div>
+
+    <ol class="mt-12 grid gap-5 md:grid-cols-3">
+      {
+        steps.map((s, i) => (
+          <li class="reveal card relative flex flex-col p-6">
+            <div class="flex items-center gap-3">
+              <span class="flex h-9 w-9 items-center justify-center rounded-full border border-solar-500/40 bg-solar-500/10 font-mono text-sm font-semibold text-solar-400">
+                {s.n}
+              </span>
+              {i < steps.length - 1 && (
+                <span
+                  class="hidden h-px flex-1 bg-gradient-to-r from-white/15 to-transparent md:block"
+                  aria-hidden="true"
+                />
+              )}
+            </div>
+            <h3 class="mt-4 text-lg font-semibold text-white">{s.title}</h3>
+            <p class="mt-2.5 text-sm leading-relaxed text-slate-400">{s.body}</p>
+          </li>
+        ))
+      }
+    </ol>
+
+    <div class="reveal mt-12 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+      <DemoButton variant="primary" label="Start a pilot" />
+      <p class="text-sm text-slate-500">
+        30-minute call to scope your orbits and the parameters that matter to you.
+      </p>
+    </div>
+  </div>
+</section>

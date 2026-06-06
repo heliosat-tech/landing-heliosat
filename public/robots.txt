@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# TODO: set to your production domain.
+Sitemap: https://heliosat.com/sitemap-index.xml

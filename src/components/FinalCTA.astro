@@ -1,0 +1,41 @@
+---
+import DemoButton from './DemoButton.astro';
+---
+
+<section id="demo" class="mx-auto max-w-content px-5 py-24 sm:px-8 sm:py-32">
+  <div
+    class="reveal relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-panel2 to-ink px-6 py-14 text-center sm:px-12 sm:py-20"
+  >
+    <!-- subtle solar glow inside the card -->
+    <div
+      class="pointer-events-none absolute -top-24 left-1/2 h-64 w-[36rem] -translate-x-1/2 rounded-full bg-solar-500/20 blur-3xl"
+      aria-hidden="true"
+    >
+    </div>
+
+    <div class="relative">
+      <span
+        class="inline-flex items-center gap-2 rounded-full border border-solar-500/30 bg-solar-500/10 px-3.5 py-1.5 font-mono text-xs uppercase tracking-label text-solar-300"
+      >
+        <span class="h-1.5 w-1.5 rounded-full bg-solar-400"></span>
+        Currently onboarding pilot customers
+      </span>
+
+      <h2
+        class="mx-auto mt-6 max-w-2xl text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl"
+      >
+        If you run satellites, let’s forecast their environment together.
+      </h2>
+
+      <p class="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-slate-300">
+        We’re working hands-on with a small number of operators to validate the
+        engine against real missions. Book a 30-minute call to see whether your
+        orbits are a fit.
+      </p>
+
+      <div class="mt-9 flex justify-center">
+        <DemoButton variant="primary" label="Request a demo" />
+      </div>
+    </div>
+  </div>
+</section>

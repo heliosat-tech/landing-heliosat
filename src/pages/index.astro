@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import Problem from '../components/Problem.astro';
+import Solution from '../components/Solution.astro';
+import WhyHelioSat from '../components/WhyHelioSat.astro';
+import UseCases from '../components/UseCases.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout>
+  <Navbar />
+  <main id="main">
+    <Hero />
+    <Problem />
+    <Solution />
+    <WhyHelioSat />
+    <UseCases />
+    <FinalCTA />
+  </main>
+  <Footer />
+</BaseLayout>

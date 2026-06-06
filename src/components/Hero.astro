@@ -1,0 +1,51 @@
+---
+import DemoButton from './DemoButton.astro';
+import OrbitGraphic from './OrbitGraphic.astro';
+---
+
+<section id="top" class="relative overflow-hidden">
+  <div
+    class="mx-auto grid max-w-content items-center gap-12 px-5 pb-20 pt-16 sm:px-8 sm:pb-28 sm:pt-24 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8"
+  >
+    <!-- Copy -->
+    <div class="reveal">
+      <p class="eyebrow mb-5">Space weather · forecasting engine</p>
+
+      <!-- Outcome-focused headline, not feature-focused -->
+      <h1
+        class="text-balance text-4xl font-semibold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-[3.4rem]"
+      >
+        Stay ahead of the space weather
+        <span class="text-solar-400">that threatens your satellites.</span>
+      </h1>
+
+      <!-- TODO: refine subheadline once the exact product scope is locked. -->
+      <p class="mt-6 max-w-xl text-lg leading-relaxed text-slate-300">
+        HelioSat forecasts the space environment along your orbits — drag,
+        radiation, and charging — so your team can plan maneuvers and protect
+        hardware before disruptions hit, not after.
+      </p>
+
+      <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+        <DemoButton variant="primary" label="Request a demo" />
+        <a
+          href="#how-it-works"
+          class="btn btn-ghost"
+        >
+          See how it works
+        </a>
+      </div>
+
+      <p class="mt-6 font-mono text-xs uppercase tracking-label text-slate-500">
+        Built by ex-NASA engineers · In pilot with select operators
+      </p>
+    </div>
+
+    <!-- Visual -->
+    <div class="reveal relative mx-auto w-full max-w-md lg:max-w-none">
+      <OrbitGraphic class="aspect-square w-full motion-safe:animate-float" />
+    </div>
+  </div>
+
+  <hr class="hairline mx-auto max-w-content" />
+</section>

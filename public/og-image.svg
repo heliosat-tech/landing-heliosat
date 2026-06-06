@@ -1,0 +1,43 @@
+<!-- Placeholder Open Graph image (1200x630). TODO: export a final PNG/JPG for best social previews. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <radialGradient id="glow" cx="78%" cy="30%" r="55%">
+      <stop offset="0%" stop-color="#F5A524" stop-opacity="0.28"/>
+      <stop offset="55%" stop-color="#F5A524" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#05070E" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="sun" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFE7BD"/>
+      <stop offset="50%" stop-color="#F5A524"/>
+      <stop offset="100%" stop-color="#D9871A"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="#05070E"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- grid -->
+  <g stroke="#FFFFFF" stroke-opacity="0.05" stroke-width="1">
+    <path d="M0 90 H1200 M0 180 H1200 M0 270 H1200 M0 360 H1200 M0 450 H1200 M0 540 H1200"/>
+    <path d="M120 0 V630 M240 0 V630 M360 0 V630 M480 0 V630 M600 0 V630 M720 0 V630 M840 0 V630 M960 0 V630 M1080 0 V630"/>
+  </g>
+
+  <!-- orbital motif (right side) -->
+  <g transform="translate(910 315)">
+    <circle r="46" fill="url(#sun)"/>
+    <ellipse rx="150" ry="150" fill="none" stroke="#FFFFFF" stroke-opacity="0.25" stroke-width="2"/>
+    <ellipse rx="215" ry="115" fill="none" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="2" transform="rotate(26)"/>
+    <ellipse rx="265" ry="150" fill="none" stroke="#FFFFFF" stroke-opacity="0.12" stroke-width="2" transform="rotate(-20)"/>
+    <circle cx="150" cy="0" r="7" fill="#FFBE6B"/>
+  </g>
+
+  <!-- wordmark + headline -->
+  <text x="90" y="150" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="700" letter-spacing="1" fill="#FFFFFF">HelioSat</text>
+  <text x="90" y="118" font-family="monospace" font-size="20" letter-spacing="4" fill="#FFBE6B">SPACE WEATHER FORECASTING ENGINE</text>
+
+  <text x="90" y="330" font-family="Inter, Arial, sans-serif" font-size="62" font-weight="700" fill="#FFFFFF">Stay ahead of the space</text>
+  <text x="90" y="402" font-family="Inter, Arial, sans-serif" font-size="62" font-weight="700" fill="#FFFFFF">weather that threatens</text>
+  <text x="90" y="474" font-family="Inter, Arial, sans-serif" font-size="62" font-weight="700" fill="#F5A524">your satellites.</text>
+
+  <text x="92" y="560" font-family="monospace" font-size="22" letter-spacing="2" fill="#9AA4B8">Built by ex-NASA engineers · In pilot with select operators</text>
+</svg>

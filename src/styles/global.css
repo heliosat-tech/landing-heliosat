@@ -1,0 +1,200 @@
+/*
+ * Global styles. Tailwind's base/components/utilities are injected automatically
+ * by @astrojs/tailwind, so this file only holds custom design primitives:
+ * the page backdrop, button styles, technical labels and the scroll-reveal effect.
+ */
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background-color: theme('colors.ink');
+  color: #e6eaf2;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: theme('colors.solar.500');
+  color: #05070e;
+}
+
+/* Accessible focus ring for keyboard users */
+:where(a, button):focus-visible {
+  outline: 2px solid theme('colors.solar.400');
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* --- Page backdrop: faint technical grid + a warm solar glow up top --- */
+.site-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-color: theme('colors.ink');
+}
+
+.site-backdrop::before {
+  /* thin grid lines, masked so they fade toward the edges */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 72px 72px;
+  -webkit-mask-image: radial-gradient(
+    ellipse 90% 60% at 50% 0%,
+    #000 0%,
+    transparent 75%
+  );
+  mask-image: radial-gradient(
+    ellipse 90% 60% at 50% 0%,
+    #000 0%,
+    transparent 75%
+  );
+}
+
+.site-backdrop::after {
+  /* warm solar glow behind the hero */
+  content: '';
+  position: absolute;
+  top: -18rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70rem;
+  height: 40rem;
+  background: radial-gradient(
+    circle at center,
+    rgba(245, 165, 36, 0.16) 0%,
+    rgba(245, 165, 36, 0.05) 35%,
+    transparent 70%
+  );
+  filter: blur(8px);
+}
+
+/* --- Buttons --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1;
+  padding: 0.8rem 1.35rem;
+  border-radius: 0.6rem;
+  transition: transform 0.15s ease, background-color 0.15s ease,
+    border-color 0.15s ease, box-shadow 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background-color: theme('colors.solar.500');
+  color: #1a1304;
+  box-shadow: 0 0 0 1px rgba(245, 165, 36, 0.4),
+    0 10px 30px -10px rgba(245, 165, 36, 0.55);
+}
+
+.btn-primary:hover {
+  background-color: theme('colors.solar.400');
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  background-color: rgba(255, 255, 255, 0.03);
+  color: #e6eaf2;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.btn-ghost:hover {
+  background-color: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.22);
+  transform: translateY(-1px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn:hover {
+    transform: none;
+  }
+}
+
+/* --- Small technical eyebrow label --- */
+.eyebrow {
+  font-family: theme('fontFamily.mono');
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: theme('colors.solar.400');
+}
+
+/* --- Card surface --- */
+.card {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.035),
+    rgba(255, 255, 255, 0.01)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  transition: border-color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+}
+
+.card:hover {
+  border-color: rgba(245, 165, 36, 0.35);
+  transform: translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card:hover {
+    transform: none;
+  }
+}
+
+/* Hairline divider that fades at the ends */
+.hairline {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.12),
+    transparent
+  );
+}
+
+/* --- Scroll reveal --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

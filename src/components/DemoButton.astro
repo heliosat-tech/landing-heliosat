@@ -1,0 +1,46 @@
+---
+import { DEMO_URL } from '../consts';
+
+interface Props {
+  /** Visual style of the button. */
+  variant?: 'primary' | 'ghost';
+  /** Button label. */
+  label?: string;
+  /** Extra classes to merge in. */
+  class?: string;
+}
+
+const {
+  variant = 'primary',
+  label = 'Request a demo',
+  class: className = '',
+} = Astro.props;
+---
+
+<a
+  href={DEMO_URL}
+  target="_blank"
+  rel="noopener noreferrer"
+  class:list={['btn', variant === 'primary' ? 'btn-primary' : 'btn-ghost', className]}
+>
+  {label}
+  {
+    variant === 'primary' && (
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        fill="none"
+        aria-hidden="true"
+      >
+        <path
+          d="M3 8h9M9 5l3 3-3 3"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    )
+  }
+</a>

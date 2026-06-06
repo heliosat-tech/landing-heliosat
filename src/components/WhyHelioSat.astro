@@ -1,0 +1,55 @@
+---
+// Credibility section. Highlights the team's background without naming individuals.
+// TODO: confirm wording is accurate and cleared for public use.
+const credentials = [
+  {
+    label: 'Founding team',
+    value: 'Ex-NASA engineers',
+    body: 'Founded by engineers who designed, built, and flew operational space systems — people who have owned the consequences of a bad environment forecast.',
+  },
+  {
+    label: 'Research heritage',
+    value: 'Imperial College London',
+    body: 'Anchored in frontier heliophysics research, with affiliation to one of the world’s leading space and plasma physics groups.',
+  },
+  {
+    label: 'Stage',
+    value: 'In active pilots',
+    body: 'Working hands-on with a small set of operators to validate forecasts against real missions before a wider release.',
+  },
+];
+---
+
+<section id="why" class="mx-auto max-w-content px-5 py-20 sm:px-8 sm:py-28">
+  <div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+    <div class="reveal">
+      <p class="eyebrow mb-4">Why HelioSat</p>
+      <h2 class="text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+        Mission experience meets frontier science.
+      </h2>
+      <p class="mt-4 text-lg leading-relaxed text-slate-400">
+        The hard part of space weather isn’t the physics or the software alone —
+        it’s knowing which signals an operator can actually act on. We’ve been on
+        both sides of that problem.
+      </p>
+      <p class="mt-4 leading-relaxed text-slate-500">
+        That combination — operational rigor and research depth — is what lets us
+        turn a chaotic environment into forecasts a mission team can trust.
+      </p>
+    </div>
+
+    <dl class="reveal grid gap-px overflow-hidden rounded-2xl border border-white/8 bg-white/5">
+      {
+        credentials.map((c) => (
+          <div class="bg-ink/80 p-6 sm:p-7">
+            <dt class="font-mono text-xs uppercase tracking-label text-slate-500">
+              {c.label}
+            </dt>
+            <dd class="mt-1.5 text-xl font-semibold text-solar-400">{c.value}</dd>
+            <p class="mt-2 text-sm leading-relaxed text-slate-400">{c.body}</p>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>
