@@ -95,7 +95,7 @@ grep -rn "TODO" src public astro.config.mjs
 Key things to set before launch:
 
 - **`src/consts.ts`** — site URL, contact email, LinkedIn URL, and the
-  `DEMO_URL` (currently `https://calendly.com/massomarti/30min`).
+  `DEMO_URL` (currently `https://calendly.com/heliosat-technologies/30min`).
 - **`astro.config.mjs`** — `site` (your production domain). This drives
   canonical URLs, Open Graph URLs, and the sitemap.
 - **`public/og-image.svg`** — a placeholder Open Graph card. Most social

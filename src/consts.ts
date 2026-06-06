@@ -5,7 +5,7 @@
  */
 
 /** The single conversion action for the whole site. */
-export const DEMO_URL = 'https://calendly.com/massomarti/30min';
+export const DEMO_URL = 'https://calendly.com/heliosat-technologies/30min';
 
 export const SITE = {
   name: 'HelioSat',
@@ -16,8 +16,8 @@ export const SITE = {
     'HelioSat is a compute engine that forecasts space weather and thermospheric drag along your orbits, so satellite teams can plan maneuvers and protect hardware before disruptions hit.',
   // TODO: set to your production domain (used for canonical + OG URLs).
   url: 'https://heliosat.com',
-  // TODO: replace placeholders below with real contact details.
-  email: 'hello@heliosat.com',
+  email: 'contact@heliosat.co',
+  contactEmails: ['contact@heliosat.co', 'heliosat.technologies@gmail.com'],
   linkedin: 'https://www.linkedin.com/company/heliosat',
   ogImage: '/og-image.svg',
 } as const;

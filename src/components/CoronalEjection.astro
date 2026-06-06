@@ -1,0 +1,223 @@
+---
+/**
+ * Hero background: real solar footage from NASA SVS.
+ *
+ * Source asset:
+ * "Magnificent Eruption Mk II" and "New Trebuchet Mk II"
+ * Converted from supplied ProRes MOV files into browser-safe H.264 MP4s before
+ * being alternated as the full hero background.
+ */
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<div
+  class:list={['solar-video pointer-events-none absolute inset-0 select-none', className]}
+  aria-hidden="true"
+  data-solar-video
+>
+  <video
+    class="solar-video__media solar-video__media--trebuchet is-active"
+    src="/videos/trebuchet-eruption-hero.mp4"
+    poster="/videos/trebuchet-eruption-hero-poster.jpg"
+    autoplay
+    muted
+    playsinline
+    preload="auto"
+    role="presentation"
+    data-solar-clip
+  ></video>
+
+  <video
+    class="solar-video__media solar-video__media--magnificent"
+    src="/videos/magnificent-eruption-hero.mp4"
+    poster="/videos/magnificent-eruption-hero-poster.jpg"
+    muted
+    playsinline
+    preload="auto"
+    role="presentation"
+    data-solar-clip
+  ></video>
+</div>
+
+<style>
+  .solar-video {
+    isolation: isolate;
+    overflow: hidden;
+    background: #000;
+  }
+
+  .solar-video::before,
+  .solar-video::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+  }
+
+  .solar-video::before {
+    background:
+      radial-gradient(
+        ellipse 72% 58% at 72% 13%,
+        rgba(245, 165, 36, 0.2) 0%,
+        rgba(245, 165, 36, 0.06) 36%,
+        transparent 72%
+      ),
+      linear-gradient(
+        90deg,
+        rgba(3, 6, 12, 0.96) 0%,
+        rgba(3, 6, 12, 0.88) 34%,
+        rgba(3, 6, 12, 0.34) 62%,
+        rgba(3, 6, 12, 0.62) 100%
+      );
+  }
+
+  .solar-video::after {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(3, 6, 12, 0.6) 0%,
+        rgba(3, 6, 12, 0.1) 34%,
+        rgba(3, 6, 12, 0.78) 78%,
+        #03060c 100%
+      ),
+      linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.03) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.025) 1px,
+        transparent 1px
+      );
+    background-size: auto, 72px 72px, 72px 72px;
+  }
+
+  .solar-video__media {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 650ms ease, visibility 0s linear 650ms;
+    will-change: opacity;
+  }
+
+  .solar-video__media.is-active {
+    opacity: 0.86;
+    visibility: visible;
+    transition: opacity 650ms ease;
+  }
+
+  .solar-video__media.is-exiting {
+    opacity: 0;
+    visibility: visible;
+    transition: opacity 500ms ease;
+  }
+
+  .solar-video__media--trebuchet {
+    object-position: 54% 36%;
+    transform: translateX(8%) scale(1.18);
+    transform-origin: 54% 38%;
+    filter: brightness(0.5) contrast(1.12) saturate(0.95);
+  }
+
+  .solar-video__media--magnificent {
+    object-position: 50% 38%;
+    transform: translateX(12%) scale(1.22);
+    transform-origin: 50% 42%;
+    filter: brightness(0.54) contrast(1.08) saturate(0.92);
+  }
+
+  @media (max-width: 640px) {
+    .solar-video__media--trebuchet {
+      object-position: 51% 44%;
+      transform: translateX(4%) scale(1.44);
+    }
+
+    .solar-video__media--magnificent {
+      object-position: 50% 44%;
+      transform: translateX(8%) scale(1.36);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .solar-video__media--trebuchet {
+      transform: translateX(8%) scale(1.18);
+    }
+
+    .solar-video__media--magnificent {
+      transform: translateX(12%) scale(1.22);
+    }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const videos = Array.from(document.querySelectorAll('[data-solar-video] [data-solar-clip]'));
+    if (!videos.length) return;
+
+    if (reduce) {
+      videos.forEach((video, index) => {
+        video.classList.toggle('is-active', index === 0);
+        video.removeAttribute('autoplay');
+        video.pause();
+      });
+      return;
+    }
+
+    let activeIndex = 0;
+    let switching = false;
+
+    function activate(index) {
+      const current = videos[activeIndex];
+      const next = videos[index];
+      if (!next || current === next || switching) return;
+
+      switching = true;
+      current.classList.add('is-exiting');
+
+      window.setTimeout(function () {
+        current.classList.remove('is-active', 'is-exiting');
+        current.pause();
+        current.currentTime = 0;
+
+        activeIndex = index;
+        next.currentTime = 0;
+        next.classList.add('is-active');
+        next.play().catch(function () {
+          /* Autoplay is muted, but leave the poster visible if a browser blocks it. */
+        });
+        switching = false;
+      }, 520);
+    }
+
+    videos.forEach((video, index) => {
+      video.addEventListener('ended', function () {
+        activate((index + 1) % videos.length);
+      });
+      video.addEventListener('timeupdate', function () {
+        if (video.duration && video.duration - video.currentTime < 0.2) {
+          activate((index + 1) % videos.length);
+        }
+      });
+      if (index !== activeIndex) {
+        video.pause();
+        video.currentTime = 0;
+      }
+    });
+
+    videos[activeIndex].play().catch(function () {
+      /* The first video has a poster and remains visible if playback is blocked. */
+    });
+  })();
+</script>

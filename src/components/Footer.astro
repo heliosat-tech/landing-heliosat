@@ -16,14 +16,20 @@ const year = new Date().getFullYear();
       <span class="text-sm text-slate-600">© {year}</span>
     </div>
 
-    <nav class="flex items-center gap-6 text-sm" aria-label="Footer">
-      <!-- TODO: replace with the real contact inbox. -->
-      <a
-        href={`mailto:${SITE.email}`}
-        class="text-slate-400 transition-colors hover:text-white"
-      >
-        {SITE.email}
-      </a>
+    <nav
+      class="flex flex-col items-start gap-3 text-sm sm:flex-row sm:items-center sm:gap-6"
+      aria-label="Footer"
+    >
+      {
+        SITE.contactEmails.map((email) => (
+          <a
+            href={`mailto:${email}`}
+            class="break-all text-slate-400 transition-colors hover:text-white"
+          >
+            {email}
+          </a>
+        ))
+      }
       <!-- TODO: replace with the real company LinkedIn URL. -->
       <a
         href={SITE.linkedin}
